@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  neo4j:
+    uri: ${NEO4J_URI:bolt://localhost:7687}
+    authentication:
+      username: ${NEO4J_USERNAME:neo4j}
+      password: ${NEO4J_PASSWORD:password}
+
+neo4j:
+  graphql:
+    url: ${NEO4J_GRAPHQL_URL:http://localhost:7474/graphql}
