@@ -118,10 +118,18 @@ export class AppComponent implements OnInit {
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    this.eventService.getEvent('timeline-demo').subscribe((event) => {
-      this.activeEventTitle = event.title;
-      this.activeEventDate = new Date(event.eventDate).toLocaleDateString();
-      this.photos = event.photos;
+    this.eventService.getEvent('timeline-demo').subscribe({
+      next: (event) => {
+        this.activeEventTitle = event.title;
+        this.activeEventDate = new Date(event.eventDate).toLocaleDateString();
+        this.photos = event.photos;
+      },
+      error: (error) => {
+        console.error('Failed to load event:', error);
+        this.activeEventTitle = 'Failed to load event';
+        this.activeEventDate = '';
+        this.photos = [];
+      }
     });
   }
 
