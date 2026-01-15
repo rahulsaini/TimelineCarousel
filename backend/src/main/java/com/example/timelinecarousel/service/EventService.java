@@ -19,6 +19,9 @@ public class EventService {
     }
 
     public Event uploadEvent(UploadEventRequest request) {
+        if (request == null || request.title() == null || request.title().trim().isEmpty()) {
+            throw new IllegalArgumentException("Request and title cannot be null or empty");
+        }
         String eventId = UUID.randomUUID().toString();
         Instant eventDate = request.eventDate() != null ? request.eventDate() : Instant.now();
         List<Photo> photos = request.photos() == null ? List.of() : request.photos();
