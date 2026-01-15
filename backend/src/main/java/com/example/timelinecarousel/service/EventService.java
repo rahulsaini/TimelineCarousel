@@ -70,8 +70,14 @@ public class EventService {
             return new Event(eventId, "Unknown event", Instant.now(), List.of());
         }
 
-        List<Photo> timelinePhotos = new ArrayList<>(response.photos());
-        response.linkedEvents().forEach(linkedEvent -> timelinePhotos.addAll(linkedEvent.photos()));
+        List<Photo> timelinePhotos = new ArrayList<>(response.photos() != null ? response.photos() : List.of());
+        if (response.linkedEvents() != null) {
+            response.linkedEvents().forEach(linkedEvent -> {
+                if (linkedEvent != null && linkedEvent.photos() != null) {
+                    timelinePhotos.addAll(linkedEvent.photos());
+                }
+            });
+        }
         return new Event(response.id(), response.title(), response.eventDate(), timelinePhotos);
     }
 
