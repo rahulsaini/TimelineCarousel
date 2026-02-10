@@ -1,16 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>timelinecarousel</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>timelinecarousel</name>
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>timelinecarousel-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>timelinecarousel-backend</artifactId>
+  <name>timelinecarousel-backend</name>
   <description>Timeline Carousel backend powered by Spring Boot and Neo4j</description>
-  <properties>
-    <java.version>17</java.version>
-    <spring-boot.version>3.2.4</spring-boot.version>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
