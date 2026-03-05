@@ -33,6 +33,10 @@ export class EventService {
     });
   }
 
+  getMockEvent(): Observable<EventTimeline> {
+    return of(this.fallbackTimeline());
+  }
+
   private fallbackTimeline(): EventTimeline {
     return {
       id: 'timeline-demo',

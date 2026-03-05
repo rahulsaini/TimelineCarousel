@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimelineCarouselComponent } from './timeline-carousel/timeline-carousel.component';
-import { EventService } from './services/event.service';
+import { EventService, Photo } from './services/event.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ import { EventService } from './services/event.service';
           <p class="eyebrow">Timeline Carousel</p>
           <h1>Explore memories across connected events.</h1>
           <p class="subtitle">
-            The carousel blends photos from related events using a Neo4j GraphQL timeline.
+            The carousel is currently displaying mock photo data for the timeline experience.
           </p>
         </div>
         <div class="hero-card">
@@ -111,14 +111,14 @@ import { EventService } from './services/event.service';
   ]
 })
 export class AppComponent implements OnInit {
-  photos = [];
+  photos: Photo[] = [];
   activeEventTitle = 'Loading…';
   activeEventDate = '';
 
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    this.eventService.getEvent('timeline-demo').subscribe({
+    this.eventService.getMockEvent().subscribe({
       next: (event) => {
         this.activeEventTitle = event.title;
         this.activeEventDate = new Date(event.eventDate).toLocaleDateString();
